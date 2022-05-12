@@ -1,0 +1,56 @@
+{% extends "layout.html"%}
+{% block content %}
+{% include "normal_nav.html" %}
+<div class="container">
+    <h1 style="text-align: center; margin-top: 20px; margin-bottom: 20px;">Adding Cars</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% if text %}
+    <h3>The Car Number is {{text}}</h3>
+    <form action="/add" method="post">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Plate Number</label>
+            <input type="text" class="form-control" name="car_id">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Room Number</label>
+            <input type="text" class="form-control" name="room_no">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Contact Number</label>
+            <input type="text" class="form-control" name="contact_no">
+        </div>
+        <input type="submit" class="btn btn-dark">
+    </form>
+    {% else %}
+    <form action="/add" method="post">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Plate Number</label>
+            <input type="text" class="form-control" name="car_id">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Room Number</label>
+            <input type="text" class="form-control" name="room_no">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Contact Number</label>
+            <input type="text" class="form-control" name="contact_no">
+        </div>
+        <input type="submit" class="btn btn-dark">
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

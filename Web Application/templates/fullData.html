@@ -1,0 +1,44 @@
+{% extends "layout.html"%}
+{% block header%}
+<link rel="stylesheet" href="../styles/fullData.css">
+{% endblock %}
+{% block content %}
+{% include "normal_nav.html" %}
+<div class="container">
+    <h1 style="text-align: center; margin-bottom: 20px; margin-top: 20px;">Showing Full logs of Cars</h1>
+    <form action="/full" method="post">
+        <select name="limit" id="" class="form-select">
+            <option value="10">10</option>
+            <option value="5">5</option>
+            <option value="50">50</option>
+        </select>
+        <input style="margin-top: 20px; margin-bottom: 20px;" class="btn btn-dark" type="submit" value="Get Rows">
+    </form>
+    <button style="margin-bottom: 20px;" class="btn btn-dark" id="download-button">Download</button>
+    <table id="customers">
+        <tr>
+            <th>Plate Number</th>
+            <th>Name</th>
+            <th>Room Number</th>
+            <th>Contact Number</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{i[0]}}</td>
+            <td>{{i[1]}}</td>
+            <td>{{i[2]}}</td>
+            <td>{{i[3]}}</td>
+            <td>{{i[4]}}</td>
+            <td>{{i[5]}}</td>
+            <td>{{i[6]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
+{% block ending %}
+<script src="../styles/js/fullData.js"></script>
+{% endblock%}

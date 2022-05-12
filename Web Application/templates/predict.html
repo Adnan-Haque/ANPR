@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+{% include "normal_nav.html" %}
+<div class="container">
+    <h1 style="text-align: center; margin-top: 20px; margin-bottom:20px;">Prediction..</h1>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" id="imgInp" accept="image/jpg" name="image1">
+            <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Upload</button>
+        </div>
+        <img id="blah" src="#" alt="">
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% if data %}
+    {% block data %}
+    <form action="/addLog" method="post">
+        <input type="text" value="{{data[0]}}" name="car_id" readonly="readonly">
+        <input type="text" value="{{data[1]}}" name="name" readonly="readonly">
+        <input type="text" value="{{data[2]}}" name="room_no" readonly="readonly">
+        <input type="text" value="{{data[3]}}" name="contact_no" readonly="readonly">
+        <select name="status" id="cars">
+            <option value="entry">Entry</option>
+            <option value="exit">Exit</option>
+        </select>
+        <p>Do you want to upload the car in the Database ?</p>
+        <input type="submit" class="btn btn-success" value="Yes">
+        <a href="/predict" class="btn btn-danger">No</a>
+    </form>
+    {% endblock %}
+    {% endif %}
+    {% endblock %}
+    {% block ending %}
+    <script src="../styles/js/predict.js"></script>
+    {% endblock %}
+</div>
